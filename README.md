@@ -7,13 +7,13 @@ I thinnk this repository is a valuable resource for students who want to review 
 ## Outline
 
 ### Part I - First steps with JavaFX
-<p><a href="">01 - First JavaFX application</a></p>
+<p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">01 - First JavaFX application</a></p>
 
 ## Part I - First steps with JavaFX
 
 ### 01 - First JavaFX application 
 
-- <small><a href="">Back to Outline</a></small>
+- <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
 - <strong>Project source:</strong> FirstJavaFXApplication
 
 <p align="center"> <img src="Images/HelloApplication.png" width=302 height="251" alt="Example output" title="First JFrame"></p>
