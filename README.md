@@ -7,11 +7,12 @@ I thinnk this repository is a valuable resource for students who want to review 
 ## Outline
 
 ### Part I - First steps with JavaFX
-<p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">01 - First JavaFX application</a></p>
+<p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">01 - First JavaFX application with fxml</a></p>
+<p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">01 - First JavaFX application without fxml</a></p>
 
 ## Part I - First steps with JavaFX
 
-### 01 - First JavaFX application 
+### 01 - First JavaFX application with fxml 
 
 - <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
 - <strong>Project source:</strong> FirstJavaFXApplication
@@ -89,4 +90,17 @@ The dependencies section lists the required dependencies for the project. In thi
 The build section includes plugins that are used during the build process. The maven-compiler-plugin is used to compile the Java source code. The plugin is configured to use Java 19 for both the source and target. The javafx-maven-plugin is used to package and run the JavaFX application. It is configured to use the HelloApplication class as the main class to launch the application. Other configuration options include specifying the name of the launcher, the name of the JLink zip and image, and turning off debug information and header files.
 
 
+### 02 - First JavaFX application without fxml 
 
+- <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
+- <strong>Project source:</strong> first-javafx-application-without-fxml
+
+<p align="center"> <img src="Images/Hello_Application_Without_FXML.png" width=302 height="251" alt="Example output" title="First JFrame"></p>
+
+<strong>Summary</strong>
+
+This is a JavaFX application that creates a simple UI without using FXML. The UI consists of a vertical box (VBox) that contains a Label and a Button. When the button is clicked, the label text is changed to a welcome message.
+
+The start method is the main entry point for JavaFX applications. It sets up the UI by creating a VBox and adding a Label and Button to it. It also creates a Scene object and sets it as the scene for the Stage. Finally, it sets the title of the Stage and shows it.
+
+The main method simply calls the launch method to start the application.
