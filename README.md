@@ -8,7 +8,7 @@ I thinnk this repository is a valuable resource for students who want to review 
 
 ### Part I - First steps with JavaFX
 <p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">01 - First JavaFX application with fxml</a></p>
-<p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">01 - First JavaFX application without fxml</a></p>
+<p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">02 - First JavaFX application without fxml</a></p>
 
 ## Part I - First steps with JavaFX
 
@@ -90,7 +90,7 @@ The dependencies section lists the required dependencies for the project. In thi
 The build section includes plugins that are used during the build process. The maven-compiler-plugin is used to compile the Java source code. The plugin is configured to use Java 19 for both the source and target. The javafx-maven-plugin is used to package and run the JavaFX application. It is configured to use the HelloApplication class as the main class to launch the application. Other configuration options include specifying the name of the launcher, the name of the JLink zip and image, and turning off debug information and header files.
 
 
-### 02 - First JavaFX application without fxml 
+### 02 - First JavaFX application without fxml (not recommended)
 
 - <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
 - <strong>Project source:</strong> first-javafx-application-without-fxml
