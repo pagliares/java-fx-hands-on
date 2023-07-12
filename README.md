@@ -10,6 +10,7 @@ I thinnk this repository is a valuable resource for students who want to review 
 <p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">01 - First JavaFX application with fxml</a></p>
 <p><a href="https://github.com/pagliares/java-fx-hands-on#02---first-javafx-application-without-fxml-not-recommended">02 - First JavaFX application without fxml</a></p>
 <p><a href="https://github.com/pagliares/java-fx-hands-on#03---javafx-application-lifecyle-the-method-init">03 - The method init of the JavaFX application lifecycle</a></p>
+<p><a href="#04---lifecyle--threads">04 - Lifecycle and threads</a></p>
 
 ## Part I - First steps with JavaFX
 
@@ -155,3 +156,10 @@ The provided code snippet demonstrates an override of the init() method in a Jav
 The purpose of the Thread.sleep() call in this code snippet might be to introduce an artificial delay before the application starts, possibly to give some time for other initialization tasks or to create a specific user experience. However, it's worth noting that introducing long delays in the application initialization phase may negatively impact the user experience, as the application might appear unresponsive during that time.
 
 Remember to exercise caution when using delays in application initialization and ensure that they serve a valid purpose and do not disrupt the overall usability of your application.
+
+### 04 - Lifecyle & threads  
+
+- <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
+- <strong>Project source:</strong> lifecycle-and-threads
+
+<strong>Summary</strong>
