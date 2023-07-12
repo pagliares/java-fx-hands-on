@@ -1,4 +1,4 @@
-# JavaFX hands-on
+![image](https://github.com/pagliares/java-fx-hands-on/assets/1537006/ea28ffea-a86c-4203-9409-82b4baafbaa0)# JavaFX hands-on
 
 Welcome to the repository containing examples used in the classes about Java Desktop Development with JAVA FX. The classes are taught by Rodrigo Martins Pagliares in the Computer Science undergraduate course at UNIFAL-MG, Brazil. 
 
@@ -248,6 +248,8 @@ To test this application, you can click the "Block Me" button first and then try
 
 <strong>Summary</strong>
 
+- Two ways of terminating a JavaFX application: implicitly and explicitly.
+
 <pre>
 // package and import statements ommited
 
@@ -261,11 +263,15 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        /** When the user clicks the x symbol in the Stage, the application closes visually, but it is still running
-        Usually not changed to false, but it can be useful in some specific scenarios when, for instance,
-        multiple windows are open at the same time
-        Platform.setImplicitExit(false);
+   
+        /** 
+           If we use Platform.setImplicitExit(false), when the user clicks the x symbol in the Stage, the application closes visually, but it is still running
+           Usually not changed to false, but it can be useful in some specific scenarios when, for instance,
+            multiple windows are open at the same time
          **/
+
+        // Platform.setImplicitExit(false);
+
         VBox root = new VBox();
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(20, 20, 20, 20));
