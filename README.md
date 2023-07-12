@@ -1,4 +1,4 @@
-![image](https://github.com/pagliares/java-fx-hands-on/assets/1537006/ea28ffea-a86c-4203-9409-82b4baafbaa0)# JavaFX hands-on
+# JavaFX hands-on
 
 Welcome to the repository containing examples used in the classes about Java Desktop Development with JAVA FX. The classes are taught by Rodrigo Martins Pagliares in the Computer Science undergraduate course at UNIFAL-MG, Brazil. 
 
