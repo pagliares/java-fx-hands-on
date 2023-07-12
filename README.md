@@ -22,6 +22,8 @@ I thinnk this repository is a valuable resource for students who want to review 
 
 <strong>Summary</strong>
 
+<strong>Note</strong>: This example was created with the IntelliJ assistant for JavaFX application (not the Maven assistant !). I recommend using this assistant in IntelliJ in order to have a HelloWorld kind off application out of the box when creating the project and avoid headache configuring JavaFX to work in intelliJ form a Maven project created by scratch.
+
 <strong>File hello-view.fxml</strong>
 
 <p align="center"> <img src="Images/Example_01/file-hello-viewl-xml.png" width=807 height="419" alt="Example output" title="First JFrame"></p>
@@ -110,6 +112,8 @@ The build section includes plugins that are used during the build process. The m
 <p align="center"> <img src="Images/Hello_Application_Without_FXML.png" width=302 height="251" alt="Example output" title="First JFrame"></p>
 
 <strong>Summary</strong>
+
+<strong>Note</strong>: This example was created with the IntelliJ assistant for JavaFX application (not the Maven assistant !). I recommend using this assistant in IntelliJ in order to have a HelloWorld kind off application out of the box when creating the project and avoid headache configuring JavaFX to work in intelliJ form a Maven project created by scratch. After project creation I removed some files to illustrate how to use JavaFX withou FXML. This is the same project of example 01 without hello-view.fxml and the class HelloController.
 
 This is a JavaFX application that creates a simple UI without using FXML. The UI consists of a vertical box (VBox) that contains a Label and a Button. When the button is clicked, the label text is changed to a welcome message.
 
