@@ -127,3 +127,31 @@ The main method simply calls the launch method to start the application.
 - <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
 - <strong>Project source:</strong> java-fx-application-lifecycle
 
+<strong>Summary</strong>
+
+This example demonstrates the use of the init method of the lifecycle of a JavaFX application.
+
+<pre>
+public class HelloApplication extends Application {
+   ...
+   @Override
+    public void init() throws Exception {
+        System.out.println("Before the application starts");
+        Thread.sleep(5000); // Wait 5 seconds before application starts (method start of the lifecycle)
+    }
+}
+</pre>
+
+The provided code snippet demonstrates an override of the init() method in a JavaFX application. Here's a breakdown of what the code does:
+
+1. The @Override annotation indicates that the init() method is being overridden from a superclass or interface. It ensures that the method signature matches the one in the superclass or interface.
+
+2. The init() method is a part of the JavaFX application lifecycle and is executed before the application starts. It's typically used for any necessary setup or initialization tasks.
+
+3. Inside the init() method, there is a System.out.println() statement that prints the message "Before the application starts" to the console. This line simply displays a message for informational purposes.
+
+4. The Thread.sleep(5000) line pauses the execution of the init() method for 5 seconds (5000 milliseconds). This means that the application will wait for 5 seconds before proceeding to the start() method, which is the next step in the application lifecycle.
+
+The purpose of the Thread.sleep() call in this code snippet might be to introduce an artificial delay before the application starts, possibly to give some time for other initialization tasks or to create a specific user experience. However, it's worth noting that introducing long delays in the application initialization phase may negatively impact the user experience, as the application might appear unresponsive during that time.
+
+Remember to exercise caution when using delays in application initialization and ensure that they serve a valid purpose and do not disrupt the overall usability of your application.
