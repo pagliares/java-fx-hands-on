@@ -11,6 +11,7 @@ I thinnk this repository is a valuable resource for students who want to review 
 <p><a href="https://github.com/pagliares/java-fx-hands-on#02---first-javafx-application-without-fxml-not-recommended">02 - First JavaFX application without fxml</a></p>
 <p><a href="https://github.com/pagliares/java-fx-hands-on#03---javafx-application-lifecyle-the-method-init">03 - The method init of the JavaFX application lifecycle</a></p>
 <p><a href="#04---lifecyle--threads">04 - Lifecycle and threads</a></p>
+<p><a href="#05---the-method-stop-of-the-javafx-application-lifecycle">05 - The method stop of the JavaFX application lifecycle</a></p>
 
 ## Part I - First steps with JavaFX
 
@@ -239,3 +240,93 @@ The provided code snippet is a JavaFX application that demonstrates the usage of
 12. The main() method serves as the entry point for the JavaFX application. It calls the launch() method, which initializes the JavaFX toolkit and starts the application.
 
 To test this application, you can click the "Block Me" button first and then try to click the "Click Me!" button. While the "Block Me" button is being processed, the GUI will be unresponsive for 10 seconds due to the blocking Thread.sleep() call. This demonstrates the importance of using threads to handle time-consuming tasks and keeping the user interface responsive.
+
+### 05 - The method stop of the JavaFX application lifecycle
+
+- <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
+- <strong>Project source:</strong> lifecycle-stop
+
+<strong>Summary</strong>
+
+<pre>
+// package and import statements ommited
+
+public class HelloApplication extends Application {
+
+    @Override
+    public void init() throws Exception {
+        // What thread does init method belong? answer: JavaFX-Launcher thread
+        System.out.println("init() method is on thread named..: "+ Thread.currentThread().getName());
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        /** When the user clicks the x symbol in the Stage, the application closes visually, but it is still running
+        Usually not changed to false, but it can be useful in some specific scenarios when, for instance,
+        multiple windows are open at the same time
+        Platform.setImplicitExit(false);
+         **/
+        VBox root = new VBox();
+        root.setAlignment(Pos.CENTER);
+        root.setPadding(new Insets(20, 20, 20, 20));
+        root.setSpacing(20);
+
+        Label text = new Label("");
+
+        Button firstButton = new Button("Click Me!");
+        firstButton.setOnAction(e -> text.setText("Learning JavaFX threads & lifecycle"));
+
+        Button secondButton = new Button("Exit explicitly!");
+        secondButton.setOnAction(event -> Platform.exit()); // Explicitly exits
+
+        root.getChildren().addAll(text, firstButton, secondButton);
+
+        Scene scene = new Scene(root, 450, 300);
+        stage.setScene(scene);
+        stage.setTitle("JavaFX threads");
+        stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        System.out.println("stop() method is on thread named..: " + Thread.currentThread().getName());
+        System.out.println("Closing the application");
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
+</pre>
+
+The provided code snippet is a JavaFX application that demonstrates the usage of the stop() method and explicitly exiting the application. Here's a breakdown of the code:
+
+1. The HelloApplication class extends the Application class, which is the main entry point for JavaFX applications.
+
+2. The init() method is overridden and prints the name of the thread it belongs to. In this case, it belongs to the JavaFX-Launcher thread.
+
+3. The start() method is overridden and serves as the entry point for setting up the JavaFX application's user interface.
+
+4. Inside the start() method, a VBox layout is created to hold the application's components (a Label and two Button objects). The VBox is configured with alignment, padding, and spacing properties to define its appearance.
+
+5. The Label object named text is initially empty and will be used to display a message when the "Click Me!" button is clicked.
+
+6. The "Click Me!" button (firstButton) is created and configured with an event handler. When the button is clicked, the event handler sets the text of the text label to "Learning JavaFX threads & lifecycle".
+
+7. The "Exit explicitly!" button (secondButton) is created and configured with an event handler. When the button is clicked, the Platform.exit() method is called to explicitly exit the application. This will close the application window and terminate the JavaFX application.
+
+8. The root VBox layout is populated with the text label, firstButton, and secondButton.
+
+9. A Scene object is created, which represents the content to be displayed within the application window. The root layout is set as the root of the scene, and the dimensions of the scene are set to 450x300 pixels.
+
+10. The Stage object represents the main application window. The created Scene is set as the content of the stage. The title of the stage is set to "JavaFX threads".
+
+11. Finally, the stage.show() method is called to display the application window.
+
+12. The stop() method is overridden and is called when the application is about to be stopped. In this example, it prints the name of the thread it belongs to and displays a message indicating that the application is closing.
+
+13. The main() method serves as the entry point for the JavaFX application. It calls the launch() method, which initializes the JavaFX toolkit and starts the application.
+
+When running this application, you can click the "Click Me!" button to change the text displayed in the label. Additionally, clicking the "Exit explicitly!" button will call Platform.exit() to explicitly exit the application, triggering the stop() method. The stop() method will then print the name of the thread it belongs to and display a message indicating that the application is closing.
+
+It's worth noting that the stop() method is typically used to perform any necessary cleanup or resource release before the application exits.
