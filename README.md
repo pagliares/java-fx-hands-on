@@ -24,6 +24,8 @@ I thinnk this repository is a valuable resource for students who want to review 
 
 <strong>File hello-view.fxml</strong>
 
+<p align="center"> <img src="Images/Example_01/file-hello-viewl-xml.png" width=807 height="419" alt="Example output" title="First JFrame"></p>
+
 Overall, this FXML file defines a simple user interface with a label and a button, and specifies that the HelloController class should be used as the controller for the user interface.
 
 The first three lines are import statements for the JavaFX layout and control classes used in the FXML file.
@@ -44,6 +46,8 @@ The fx:controller attribute of the <VBox> tag specifies the fully-qualified name
 
 <strong>File HelloController.java</strong>
 
+<p align="center"> <img src="Images/Example_01/file_hello_controller.png" width=680 height="447" alt="Example output" title="First JFrame"></p>
+
 Overall, this Java class defines a controller that handles the user input of clicking the "Hello!" button in the FXML file and updates the label control with the text "Welcome to JavaFX Application!".
 
 The HelloController class is defined as a public class.
@@ -54,8 +58,9 @@ The onHelloButtonClick() method is marked with the @FXML annotation and is calle
 
 The onHelloButtonClick() method is marked as protected, which means it can only be accessed by subclasses of HelloController.
 
-
 <strong>File HelloApplication.java</strong>
+
+<p align="center"> <img src="Images/Example_01/file-hello-application.png" width=841 height="476" alt="Example output" title="First JFrame"></p>
 
 Overall, this Java class defines the entry point of the JavaFX application and sets up the user interface by loading the FXML file and creating a Scene object to display it on the Stage.
 
@@ -68,6 +73,8 @@ The main() method is a static method that is called to launch the JavaFX applica
 The HelloApplication class does not define any other methods or variables.
 
 <strong>File module-info.java</strong>
+
+<p align="center"> <img src="Images/Example_01/file-module-info.png" width=647 height="209" alt="Example output" title="First JFrame"></p>
 
 Overall, this module descriptor file specifies the module dependencies, opens the package to the javafx.fxml module, and exports the package to be visible to other modules.
 
@@ -82,6 +89,11 @@ The opens keyword is used to specify the packages that should be accessible to t
 The exports keyword is used to specify the packages that should be visible to other modules. In this case, the com.example.firstjavafxapplication package is exported.
 
 <strong>File pom.xml </strong>
+
+<p align="center"> <img src="Images/Example_01/file-pom-xml-dependencies.png" width=465 height="477" alt="Example output" title="First JFrame"></p>
+
+<p align="center"> <img src="Images/Example_01/file-pom-xml-plugin.png" width=879 height="435" alt="Example output" title="First JFrame"></p>
+
 
 File for a Maven project that includes dependencies and plugins for building a JavaFX application. Here's a breakdown of the relevant parts:
 
