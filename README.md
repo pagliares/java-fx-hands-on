@@ -8,7 +8,8 @@ I thinnk this repository is a valuable resource for students who want to review 
 
 ### Part I - First steps with JavaFX
 <p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">01 - First JavaFX application with fxml</a></p>
-<p><a href="https://github.com/pagliares/java-fx-hands-on#01---first-javafx-application">02 - First JavaFX application without fxml</a></p>
+<p><a href="https://github.com/pagliares/java-fx-hands-on#02---first-javafx-application-without-fxml-not-recommended">02 - First JavaFX application without fxml</a></p>
+<p><a href="https://github.com/pagliares/java-fx-hands-on#03---javafx-application-lifecyle-the-method-init">03 - The method init of the JavaFX application lifecycle</a></p>
 
 ## Part I - First steps with JavaFX
 
@@ -120,3 +121,9 @@ This is a JavaFX application that creates a simple UI without using FXML. The UI
 The start method is the main entry point for JavaFX applications. It sets up the UI by creating a VBox and adding a Label and Button to it. It also creates a Scene object and sets it as the scene for the Stage. Finally, it sets the title of the Stage and shows it.
 
 The main method simply calls the launch method to start the application.
+
+### 03 - JavaFX application lifecyle (the method init)
+
+- <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
+- <strong>Project source:</strong> java-fx-application-lifecycle
+
