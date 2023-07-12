@@ -163,3 +163,79 @@ Remember to exercise caution when using delays in application initialization and
 - <strong>Project source:</strong> lifecycle-and-threads
 
 <strong>Summary</strong>
+
+- To test this example, click the Block Me button first and then try to click the Click me button
+<pre>
+// package and import statements ommited
+   
+public class HelloApplication extends Application {
+
+    @Override
+    public void init() throws Exception {
+        // What thread does init method belong? answer: JavaFX-Launcher thread
+        System.out.println("Thread name...: "+ Thread.currentThread().getName());
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        VBox root = new VBox();
+        root.setAlignment(Pos.CENTER);
+        root.setPadding(new Insets(20, 20, 20, 20));
+        root.setSpacing(20);
+
+        Label text = new Label("");
+
+        Button firstButton = new Button("Click Me!");
+        firstButton.setOnAction(e -> text.setText("Learning JavaFX threads & lifecycle"));
+
+        Button secondButton = new Button("Block me!");
+        secondButton.setOnAction(event ->{
+            System.out.println("GUI is blocked now");
+            try {
+                Thread.sleep(10_000);
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        });
+
+        root.getChildren().addAll(text, firstButton, secondButton);
+
+        Scene scene = new Scene(root, 450, 300);
+        stage.setScene(scene);
+        stage.setTitle("JavaFX threads");
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
+</pre>
+
+The provided code snippet is a JavaFX application that demonstrates the usage of threads and the application lifecycle. Here's a breakdown of the code:
+
+1. The HelloApplication class extends the Application class, which is the main entry point for JavaFX applications.
+
+2. The init() method is overridden and prints the name of the thread it belongs to. In this case, it belongs to the JavaFX-Launcher thread.
+
+3. The start() method is overridden and serves as the entry point for setting up the JavaFX application's user interface.
+
+4. Inside the start() method, a VBox layout is created to hold the application's components (a Label and two Button objects). The VBox is configured with alignment, padding, and spacing properties to define its appearance.
+
+5. The Label object named text is initially empty and will be used to display a message when the "Click Me!" button is clicked.
+
+6. The "Click Me!" button (firstButton) is created and configured with an event handler. When the button is clicked, the event handler sets the text of the text label to "Learning JavaFX threads & lifecycle".
+
+7. The "Block me!" button (secondButton) is created and configured with an event handler. When the button is clicked, the event handler blocks the GUI thread for 10 seconds by invoking Thread.sleep(10_000). This blocking operation simulates a long-running task that could potentially freeze the user interface.
+
+8. The root VBox layout is populated with the text label, firstButton, and secondButton.
+
+9. A Scene object is created, which represents the content to be displayed within the application window. The root layout is set as the root of the scene, and the dimensions of the scene are set to 450x300 pixels.
+
+10. The Stage object represents the main application window. The created Scene is set as the content of the stage. The title of the stage is set to "JavaFX threads".
+
+11. Finally, the stage.show() method is called to display the application window.
+
+12. The main() method serves as the entry point for the JavaFX application. It calls the launch() method, which initializes the JavaFX toolkit and starts the application.
+
+To test this application, you can click the "Block Me" button first and then try to click the "Click Me!" button. While the "Block Me" button is being processed, the GUI will be unresponsive for 10 seconds due to the blocking Thread.sleep() call. This demonstrates the importance of using threads to handle time-consuming tasks and keeping the user interface responsive.
