@@ -13,6 +13,10 @@ I thinnk this repository is a valuable resource for students who want to review 
 <p><a href="#04---lifecyle--threads">04 - Lifecycle and threads</a></p>
 <p><a href="#05---the-method-stop-of-the-javafx-application-lifecycle">05 - The method stop of the JavaFX application lifecycle</a></p>
 
+### Part II - JavaFX properties & bindings
+
+<p><a href="#06---javafx-properties--bindings">06 - Properties and bindings</a></p>
+
 ## Part I - First steps with JavaFX
 
 ### 01 - First JavaFX application with fxml 
@@ -336,3 +340,138 @@ The provided code snippet is a JavaFX application that demonstrates the usage of
 When running this application, you can click the "Click Me!" button to change the text displayed in the label. Additionally, clicking the "Exit explicitly!" button will call Platform.exit() to explicitly exit the application, triggering the stop() method. The stop() method will then print the name of the thread it belongs to and display a message indicating that the application is closing.
 
 It's worth noting that the stop() method is typically used to perform any necessary cleanup or resource release before the application exits.
+
+## Part II - JavaFX properties & bindings
+
+### 06 - JavaFX properties & bindings
+
+- <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
+- <strong>Project source:</strong> properties-and-bindings
+
+<strong>Summary</strong>
+
+<pre>
+// package and import statements ommited
+
+package org.example.properties.bindings;
+
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+public class Employee {
+    private StringProperty name;
+    private DoubleProperty salary;
+
+    public Employee(String name, double salary){
+        this.name = new SimpleStringProperty(name);
+        this.salary = new SimpleDoubleProperty(salary);
+    }
+
+    public String getName(){
+        return name.getValue();
+    }
+
+    public double getSalary(){
+        return salary.get();
+    }
+
+    public DoubleProperty getSalaryProperty(){
+        return salary;
+    }
+
+    public void setSalary(double salary){
+        this.salary.set(salary);
+    }
+}
+
+
+package org.example.properties.bindings;
+
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) throws Exception {
+        Locale brazil = Locale.of("pt", "BR");
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(brazil);
+
+        VBox root = new VBox();
+        Employee employee = new Employee("Atticus Finch", 25_000.00);
+        root.setAlignment(Pos.CENTER);
+        root.setSpacing(10);
+        Label label = new Label("Name..: " + employee.getName() + "\nSalary..: " +
+                formatter.format(employee.getSalary()));
+        Button button = new Button("Increase the salary by 10%");
+        button.setOnAction(e -> {
+            double salary = employee.getSalary();
+            employee.setSalary(salary * 1.10);
+        });
+        employee.getSalaryProperty().addListener(
+                o -> label.setText("Name..: " + employee.getName() + "\nSalary..: " + formatter.format(employee.getSalary()))
+        );
+        root.getChildren().addAll(label, button);
+        Scene scene = new Scene(root, 550, 500);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
+</pre>
+
+The provided code snippet consists of two classes: Employee and Main, which demonstrate the usage of JavaFX properties and bindings. Here's a breakdown of the code:
+
+1. The Employee class represents an employee with a name and a salary. It has two properties: name (StringProperty) and salary (DoubleProperty).
+
+2.The name property is a StringProperty that represents the name of the employee. It is initialized using the SimpleStringProperty class with the provided name value.
+
+3. The salary property is a DoubleProperty that represents the salary of the employee. It is initialized using the SimpleDoubleProperty class with the provided salary value.
+
+4. The getName() method returns the value of the name property.
+
+5. The getSalary() method returns the value of the salary property.
+
+6. The getSalaryProperty() method returns the salary property itself.
+
+7. The setSalary() method sets the value of the salary property.
+
+8. The Main class extends the Application class, which is the main entry point for JavaFX applications.
+
+9. In the start() method, a Locale and a NumberFormat instance are created to format the salary as currency (Brazilian Real, in this case).
+
+10. A VBox named root is created to hold the application's components (a Label and a Button).
+
+11. An Employee object named employee is created with the name "Atticus Finch" and a salary of 25,000.00.
+
+12. The root VBox is configured with alignment and spacing properties to define its appearance.
+
+13. A Label named label is created and initialized with the employee's name and formatted salary using the NumberFormat instance.
+
+14. A Button named button is created with the label "Increase the salary by 10%". An event handler is set on the button to increase the employee's salary by 10% when clicked.
+
+15. A listener is added to the salary property using employee.getSalaryProperty().addListener(...). This listener is invoked whenever the salary property changes. In this case, it updates the label text to display the employee's name and updated formatted salary.
+
+16. The label and button are added to the root VBox.
+
+17. A Scene object is created with the root VBox as its content, and its dimensions are set to 550x500 pixels.
+
+18. The Scene is set as the content of the Stage.
+
+19. Finally, the stage.show() method is called to display the application window.
+
+20. The main() method serves as the entry point for the JavaFX application. It calls the launch() method, which initializes the JavaFX toolkit and starts the application.
+
+When running this application, it will display a window with the employee's name and salary formatted as currency. Clicking the "Increase the salary by 10%" button will update the employee's salary and automatically update the displayed value in the label due to the binding between the salary property and the label's text.
