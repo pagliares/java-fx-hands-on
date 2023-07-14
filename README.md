@@ -16,6 +16,7 @@ I thinnk this repository is a valuable resource for students who want to review 
 ### Part II - JavaFX properties & bindings
 
 <p><a href="#06---javafx-properties--bindings">06 - Properties and bindings</a></p>
+<p><a href="#07---read-only-properties">07 - Read-only properties</a></p>
 
 ## Part I - First steps with JavaFX
 
@@ -475,3 +476,66 @@ The provided code snippet consists of two classes: Employee and Main, which demo
 20. The main() method serves as the entry point for the JavaFX application. It calls the launch() method, which initializes the JavaFX toolkit and starts the application.
 
 When running this application, it will display a window with the employee's name and salary formatted as currency. Clicking the "Increase the salary by 10%" button will update the employee's salary and automatically update the displayed value in the label due to the binding between the salary property and the label's text.
+
+### 07 - Read-only properties
+
+- <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
+- <strong>Project source:</strong> read-only-properties
+
+<strong>Summary</strong>
+
+<pre>
+// package and import statements ommited
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) throws Exception {
+        Constant constant = new Constant(500);
+        constant.changeConstant(1000);
+        System.out.println("Read only integer property: " + constant.getReadOnlyIntegerProperty().get());
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
+
+public class Constant {
+    private final ReadOnlyIntegerWrapper readOnlyIntegerWrapper;
+
+    public Constant(int number){
+        this.readOnlyIntegerWrapper = new ReadOnlyIntegerWrapper(number);
+    }
+
+    public ReadOnlyIntegerProperty getReadOnlyIntegerProperty(){
+        return readOnlyIntegerWrapper.getReadOnlyProperty();
+    }
+
+    public void changeConstant(int number){
+        this.readOnlyIntegerWrapper.set(number);
+    }
+}
+</pre>
+
+The provided code snippet consists of two classes: Main and Constant, which demonstrate the usage of JavaFX properties and read-only properties. Here's a breakdown of the code:
+
+1. The Main class extends the Application class, which is the main entry point for JavaFX applications.
+
+2. In the start() method, an instance of the Constant class is created with an initial value of 500.
+
+3. The changeConstant() method is called on the constant object, passing a new value of 1000. This method sets the value of the readOnlyIntegerWrapper to the specified number.
+
+4. The value of the read-only property is printed using constant.getReadOnlyIntegerProperty().get(). This retrieves the value of the readOnlyIntegerWrapper using the get() method.
+
+5. The main() method serves as the entry point for the JavaFX application. It calls the launch() method, which initializes the JavaFX toolkit and starts the application.
+
+6. The Constant class represents a constant with an integer value. It has a single member variable: readOnlyIntegerWrapper, which is a ReadOnlyIntegerWrapper object.
+
+7. The Constant class constructor takes an int parameter and initializes the readOnlyIntegerWrapper with the provided value.
+
+8. The getReadOnlyIntegerProperty() method returns the read-only property of the readOnlyIntegerWrapper using getReadOnlyProperty().
+
+9. The changeConstant() method takes an int parameter and sets the value of the readOnlyIntegerWrapper to the specified number using the set() method.
+
+When running this application, it will create an instance of the Constant class with an initial value of 500. The changeConstant() method is then called to change the value to 1000. Finally, the read-only property value is retrieved and printed to the console.
+
+In this example, the readOnlyIntegerWrapper provides a read-only property that allows external classes to observe the value but not modify it directly. The Constant class encapsulates the read-only property and provides a method to change its value internally.
