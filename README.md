@@ -17,6 +17,7 @@ I thinnk this repository is a valuable resource for students who want to review 
 
 <p><a href="#06---javafx-properties--bindings">06 - Properties and bindings</a></p>
 <p><a href="#07---read-only-properties">07 - Read-only properties</a></p>
+<p><a href="#08---bindings-example">08 - Bindings example</a></p>
 
 ## Part I - First steps with JavaFX
 
@@ -539,3 +540,86 @@ The provided code snippet consists of two classes: Main and Constant, which demo
 When running this application, it will create an instance of the Constant class with an initial value of 500. The changeConstant() method is then called to change the value to 1000. Finally, the read-only property value is retrieved and printed to the console.
 
 In this example, the readOnlyIntegerWrapper provides a read-only property that allows external classes to observe the value but not modify it directly. The Constant class encapsulates the read-only property and provides a method to change its value internally.
+
+### 08 - Bindings example
+
+- <small><a href="https://github.com/pagliares/java-fx-hands-on#outline">Back to Outline</a></small>
+- <strong>Project source:</strong> bindings-example
+
+<strong>Summary</strong>
+
+<pre>
+// package and import statements ommited
+public class BindingsExample extends Application {
+    @Override
+    public void start(Stage stage) throws IOException {
+        VBox verticalBox = new VBox();
+        verticalBox.setAlignment(Pos.CENTER);
+        verticalBox.setSpacing(15);
+
+        Label label = new Label("How to link the value typed with a label? Answer: bindings");
+        TextField textField1 = new TextField();
+        textField1.setMaxWidth(150);
+
+        TextField textField2 = new TextField();
+        textField2.setMaxWidth(150);
+
+        Button button = new Button("Bindings example");
+        // bind the label to the textfield1 when the button is clicked. Not binding before pressed.
+        button.setOnAction(actionEvent -> label.textProperty().bind(textField1.textProperty()));
+
+
+        // First way of doing binding (unidirectional). Remember to always bind thing of the same type. Here both has String Property type
+        // textField1.textProperty().addListener((observer, oldValue, newValue) -> label.setText(newValue));
+
+        // Second way of doing binding (unidirectional). Remember to always bind thing of the same type. Here both has String Property type
+        // label.textProperty().bind(textField1.textProperty());
+
+        // Third way of doing binding (bidirectional).
+        textField1.textProperty().bindBidirectional(textField2.textProperty());
+
+        // It is an error trying to manually change the value of a label after the biding
+        // label.setText("Error. Cannot manually change value after binding");
+
+        verticalBox.getChildren().addAll(label, textField1, textField2, button);
+        Scene scene = new Scene(verticalBox, 400, 350);
+        stage.setTitle("Bindings example");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
+</pre>
+
+The provided code snippet is a JavaFX application that demonstrates various ways of using bindings between UI components. Here's a breakdown of the code:
+
+1. The BindingsExample class extends the Application class, which is the main entry point for JavaFX applications.
+
+2. In the start() method, a VBox named verticalBox is created to hold the application's components. It is configured with alignment and spacing properties to define its appearance.
+
+3. A Label named label is created and initialized with a text explaining how to link the typed value with a label using bindings.
+
+4. Two TextField objects named textField1 and textField2 are created. textField1 is configured to have a maximum width of 150 pixels.
+
+5. A Button named button is created with the label "Bindings example".
+
+6. An event handler is set on the button using button.setOnAction(...) to bind the textProperty() of label to the textProperty() of textField1 when the button is clicked. This establishes a binding between the two properties, causing the label to automatically update with the value typed in textField1.
+
+7. The textField1.textProperty().bindBidirectional(textField2.textProperty()) line establishes a bidirectional binding between textField1 and textField2. This means that changes in one text field will be reflected in the other and vice versa.
+
+8. The verticalBox is populated with the label, textField1, textField2, and button components.
+
+9. A Scene object is created with the verticalBox as its content, and its dimensions are set to 400x350 pixels.
+
+10. The Scene is set as the content of the Stage.
+
+11. Finally, the stage.show() method is called to display the application window.
+
+12. The main() method serves as the entry point for the JavaFX application. It calls the launch() method, which initializes the JavaFX toolkit and starts the application.
+
+When running this application, it will display a window with a label, two text fields, and a button. Typing in textField1 and clicking the "Bindings example" button will bind the label's text to the value typed in textField1. Any changes in textField1 will be automatically reflected in the label.
+
+Additionally, the bidirectional binding between textField1 and textField2 ensures that changes in either text field will be synchronized with the other.
